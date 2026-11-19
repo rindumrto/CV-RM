@@ -1,0 +1,2265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital CV | Rindu Marito</title>
+
+    <style>
+      :root {
+        --bg: #f3f4f2;
+        --surface: #ffffff;
+        --surface2: #e9edf1;
+        --text: #263447;
+        --muted: #778393;
+        --primary: #344a65;
+        --accent: #b59a78;
+        --border: #e5e8eb;
+        --shadow:
+          0 8px 25px rgba(37, 54, 75, 0.07), 0 2px 5px rgba(37, 54, 75, 0.035);
+        --shadow-hover: 0 16px 35px rgba(37, 54, 75, 0.12);
+        --radius: 19px;
+      }
+
+      body.dark {
+        --bg: #151c26;
+        --surface: #202b39;
+        --surface2: #2a3747;
+        --text: #edf1f5;
+        --muted: #a5b0be;
+        --primary: #b6c9df;
+        --accent: #d0ad84;
+        --border: #354355;
+        --shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+        --shadow-hover: 0 16px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+      }
+
+      body {
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+        transition: 0.3s;
+        overflow-x: hidden;
+      }
+
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, 91%);
+        margin: auto;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* NAVIGATION */
+
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 3px 15px rgba(30, 45, 60, 0.035);
+      }
+
+      .nav-inner {
+        min-height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 850;
+        letter-spacing: -1.5px;
+        color: var(--primary);
+      }
+
+      .logo span {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 23px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 650;
+        transition: 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--border);
+        border-radius: 11px;
+        background: var(--surface2);
+        color: var(--text);
+        font-size: 15px;
+      }
+
+      .icon-btn:hover {
+        border-color: var(--accent);
+      }
+
+      .menu-btn {
+        display: none;
+      }
+
+      /* BUTTONS */
+
+      .btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        padding: 11px 19px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        font-size: 12px;
+        font-weight: 700;
+        transition: 0.25s;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      body.dark .btn-primary {
+        color: #18212c;
+      }
+
+      .btn-light {
+        background: var(--surface);
+        color: var(--text);
+      }
+
+      .btn-gold {
+        background: var(--accent);
+        color: white;
+        border-color: var(--accent);
+      }
+
+      /* GENERAL */
+
+      section {
+        padding: 65px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 25px;
+      }
+
+      .section-label {
+        font-size: 10px;
+        letter-spacing: 2.5px;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .section-title {
+        font-size: 27px;
+        letter-spacing: -0.8px;
+        font-weight: 800;
+        margin-top: 5px;
+      }
+
+      .section-description {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 5px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 25px;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .card:hover {
+        box-shadow: var(--shadow-hover);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      /* HERO */
+
+      .hero {
+        padding: 70px 0 55px;
+        position: relative;
+      }
+
+      .hero:before {
+        content: "";
+        position: absolute;
+        width: 320px;
+        height: 320px;
+        background: var(--accent);
+        opacity: 0.055;
+        border-radius: 50%;
+        filter: blur(30px);
+        right: -100px;
+        top: 0;
+        pointer-events: none;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr;
+        align-items: center;
+        gap: 65px;
+        position: relative;
+      }
+
+      .availability {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 7px 13px;
+        border-radius: 30px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 650;
+        box-shadow: var(--shadow);
+        margin-bottom: 22px;
+      }
+
+      .dot {
+        width: 7px;
+        height: 7px;
+        background: #65ad83;
+        border-radius: 50%;
+      }
+
+      .hero h1 {
+        font-size: clamp(36px, 5vw, 57px);
+        letter-spacing: -2.7px;
+        line-height: 1.12;
+        font-weight: 850;
+      }
+
+      .hero h1 span {
+        color: var(--accent);
+      }
+
+      .hero-role {
+        font-size: 17px;
+        color: var(--primary);
+        font-weight: 700;
+        margin-top: 15px;
+      }
+
+      .hero-desc {
+        font-size: 13px;
+        color: var(--muted);
+        max-width: 520px;
+        margin-top: 13px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 25px;
+      }
+
+      .socials {
+        display: flex;
+        gap: 16px;
+        margin-top: 25px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .socials a:hover {
+        color: var(--accent);
+      }
+
+      .profile-wrap {
+        position: relative;
+        max-width: 310px;
+        margin: auto;
+      }
+
+      .profile-border {
+        padding: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 150px 150px 25px 25px;
+        box-shadow: 0 20px 45px rgba(39, 55, 76, 0.12);
+        transform: rotate(2deg);
+      }
+
+      .profile-img {
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        border-radius: 140px 140px 19px 19px;
+        background: var(--surface2);
+      }
+
+      .profile-note {
+        position: absolute;
+        bottom: 22px;
+        left: -30px;
+        background: var(--surface);
+        padding: 13px 18px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 750;
+        box-shadow: var(--shadow-hover);
+        transform: rotate(-3deg);
+      }
+
+      .photo-upload {
+        display: none;
+      }
+
+      .photo-label {
+        position: absolute;
+        right: -12px;
+        top: 20px;
+        width: 43px;
+        height: 43px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--primary);
+        color: white;
+        font-size: 18px;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+      }
+
+      /* QUICK STATS */
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-top: 45px;
+      }
+
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 17px;
+        box-shadow: var(--shadow);
+      }
+
+      .stat-card h3 {
+        font-size: 23px;
+        color: var(--primary);
+      }
+
+      .stat-card p {
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 650;
+      }
+
+      /* ABOUT */
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 18px;
+      }
+
+      .about-text {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.9;
+        margin-top: 12px;
+      }
+
+      .info-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+        font-size: 11px;
+      }
+
+      .info-item span:first-child {
+        color: var(--muted);
+      }
+
+      .info-item span:last-child {
+        text-align: right;
+        font-weight: 700;
+      }
+
+      /* TIMELINE */
+
+      .timeline {
+        border-left: 2px solid var(--border);
+        padding-left: 24px;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding: 0 0 27px 12px;
+      }
+
+      .timeline-item:last-child {
+        padding-bottom: 0;
+      }
+
+      .timeline-item:before {
+        content: "";
+        position: absolute;
+        left: -31px;
+        top: 6px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 3px solid var(--surface);
+        box-shadow: 0 0 0 2px var(--accent);
+      }
+
+      .timeline-date {
+        color: var(--accent);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1px;
+      }
+
+      .timeline-item h3 {
+        font-size: 14px;
+        margin: 5px 0;
+      }
+
+      .timeline-item p {
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      /* SKILLS */
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .skill-list {
+        display: grid;
+        gap: 17px;
+        margin-top: 20px;
+      }
+
+      .skill-info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 7px;
+      }
+
+      .skill-info span:last-child {
+        color: var(--muted);
+      }
+
+      .progress {
+        height: 7px;
+        border-radius: 10px;
+        background: var(--surface2);
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        width: var(--value);
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        border-radius: 10px;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .tag {
+        background: var(--primary-soft, var(--surface2));
+        color: var(--primary);
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        padding: 6px 11px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      /* PROJECTS */
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .project-card {
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        background: var(--surface2);
+      }
+
+      .project-content {
+        padding: 21px;
+      }
+
+      .project-content h3 {
+        font-size: 15px;
+        margin-bottom: 7px;
+      }
+
+      .project-content p {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .project-link {
+        display: inline-block;
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 800;
+        margin-top: 14px;
+      }
+
+      /* CERTIFICATES */
+
+      .certificate-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+
+      .certificate {
+        text-align: center;
+      }
+
+      .certificate-icon {
+        width: 49px;
+        height: 49px;
+        display: grid;
+        place-items: center;
+        margin: 0 auto 12px;
+        border-radius: 15px;
+        background: var(--surface2);
+        color: var(--accent);
+        font-size: 22px;
+      }
+
+      .certificate h3 {
+        font-size: 12px;
+      }
+
+      .certificate p {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 5px;
+      }
+
+      /* CONTACT */
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 18px;
+      }
+
+      .contact-info {
+        display: grid;
+        gap: 17px;
+        margin-top: 20px;
+      }
+
+      .contact-item strong {
+        display: block;
+        font-size: 11px;
+      }
+
+      .contact-item span {
+        color: var(--muted);
+        font-size: 11px;
+        overflow-wrap: anywhere;
+      }
+
+      .form-group {
+        margin-bottom: 14px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 12px;
+        outline: none;
+      }
+
+      .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent);
+      }
+
+      /* FOOTER */
+
+      footer {
+        border-top: 1px solid var(--border);
+        text-align: center;
+        padding: 25px 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      /* SETTINGS */
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 20, 30, 0.35);
+        z-index: 190;
+        display: none;
+      }
+
+      .overlay.show {
+        display: block;
+      }
+
+      .settings {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100dvh;
+        width: min(360px, 90vw);
+        background: var(--surface);
+        z-index: 200;
+        padding: 25px;
+        overflow-y: auto;
+        transform: translateX(110%);
+        transition: 0.3s;
+        box-shadow: var(--shadow-hover);
+      }
+
+      .settings.open {
+        transform: translateX(0);
+      }
+
+      .panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 27px;
+      }
+
+      .panel-head h3 {
+        font-size: 17px;
+      }
+
+      .setting-group {
+        margin-bottom: 25px;
+      }
+
+      .setting-group h4 {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+
+      .setting-group select {
+        width: 100%;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        padding: 11px;
+        border-radius: 9px;
+        color: var(--text);
+        font-size: 12px;
+      }
+
+      .setting-option {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 13px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .setting-option input {
+        accent-color: var(--accent);
+      }
+
+      /* EDIT MODE */
+
+      body.edit-mode [data-editable] {
+        outline: 1px dashed var(--accent);
+        outline-offset: 3px;
+        border-radius: 3px;
+        cursor: text;
+      }
+
+      .edit-indicator {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 150;
+        padding: 10px 17px;
+        border-radius: 30px;
+        background: var(--primary);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        box-shadow: var(--shadow-hover);
+        white-space: nowrap;
+      }
+
+      body.edit-mode .edit-indicator {
+        display: block;
+      }
+
+      /* LAYOUT */
+
+      body.compact section {
+        padding: 38px 0;
+      }
+
+      body.compact .hero {
+        padding: 42px 0;
+      }
+
+      body.compact .card {
+        padding: 17px;
+      }
+
+      body.compact .project-content {
+        padding: 15px;
+      }
+
+      body.compact .project-image {
+        height: 140px;
+      }
+
+      /* ANIMATION */
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: 0.65s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* RESPONSIVE TABLET */
+
+      @media (max-width: 850px) {
+        .nav-links {
+          gap: 12px;
+        }
+
+        .hero-grid {
+          gap: 30px;
+        }
+
+        .hero h1 {
+          font-size: 43px;
+        }
+
+        .profile-wrap {
+          max-width: 260px;
+        }
+      }
+
+      /* RESPONSIVE MOBILE */
+
+      @media (max-width: 650px) {
+        .container {
+          width: 91%;
+        }
+
+        .nav-inner {
+          min-height: 65px;
+        }
+
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 65px;
+          left: 0;
+          width: 100%;
+          background: var(--surface);
+          padding: 20px 5%;
+          border-bottom: 1px solid var(--border);
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 17px;
+        }
+
+        .nav-links.show {
+          display: flex;
+        }
+
+        .menu-btn {
+          display: block;
+        }
+
+        .hero {
+          padding: 45px 0;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 38px;
+        }
+
+        .hero-desc {
+          margin: 12px auto 0;
+        }
+
+        .hero-buttons,
+        .socials {
+          justify-content: center;
+        }
+
+        .profile-wrap {
+          max-width: 220px;
+        }
+
+        .profile-note {
+          left: -13px;
+        }
+
+        .about-grid,
+        .skills-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        .project-image {
+          height: 135px;
+        }
+
+        .project-content {
+          padding: 14px;
+        }
+
+        .certificate-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        section {
+          padding: 45px 0;
+        }
+
+        .section-title {
+          font-size: 23px;
+        }
+      }
+
+      @media (max-width: 390px) {
+        .container {
+          width: 92%;
+        }
+
+        .logo {
+          font-size: 19px;
+        }
+
+        .actions {
+          gap: 4px;
+        }
+
+        .icon-btn {
+          width: 30px;
+          height: 30px;
+          font-size: 13px;
+        }
+
+        .hero h1 {
+          font-size: 35px;
+        }
+
+        .hero-role {
+          font-size: 14px;
+        }
+
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-image {
+          height: 170px;
+        }
+
+        .stats-grid {
+          gap: 8px;
+        }
+
+        .stat-card {
+          padding: 12px 8px;
+        }
+
+        .stat-card h3 {
+          font-size: 19px;
+        }
+
+        .stat-card p {
+          font-size: 9px;
+        }
+
+        .card {
+          padding: 18px;
+        }
+      }
+
+      /* PRINT / PDF */
+
+      @media print {
+        @page {
+          size: A4;
+          margin: 10mm;
+        }
+
+        html {
+          scroll-behavior: auto;
+        }
+
+        body,
+        body.dark {
+          background: white !important;
+          color: #263447 !important;
+          font-size: 9pt;
+          line-height: 1.4;
+        }
+
+        .no-print,
+        .settings,
+        .overlay,
+        .edit-indicator,
+        .photo-label,
+        .contact-form,
+        footer,
+        .hero-buttons,
+        .socials {
+          display: none !important;
+        }
+
+        body * {
+          color: #263447 !important;
+          box-shadow: none !important;
+          text-shadow: none !important;
+        }
+
+        .container {
+          width: 100% !important;
+        }
+
+        section {
+          padding: 10px 0 !important;
+          break-inside: auto;
+        }
+
+        .hero {
+          padding: 10px 0 15px !important;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1.5fr 0.65fr;
+          gap: 20px;
+        }
+
+        .hero h1 {
+          font-size: 29px;
+        }
+
+        .hero-role {
+          font-size: 12px;
+          margin-top: 5px;
+        }
+
+        .hero-desc,
+        .about-text {
+          font-size: 9px;
+          line-height: 1.45;
+        }
+
+        .profile-wrap {
+          max-width: 125px;
+        }
+
+        .profile-border {
+          padding: 4px;
+        }
+
+        .profile-note {
+          display: none;
+        }
+
+        .section-title {
+          font-size: 17px;
+        }
+
+        .section-heading {
+          margin-bottom: 10px;
+        }
+
+        .section-description {
+          font-size: 9px;
+        }
+
+        .card {
+          padding: 12px !important;
+          border: 1px solid #e2e2e2 !important;
+          background: white !important;
+          border-radius: 10px;
+          break-inside: avoid;
+        }
+
+        .about-grid,
+        .skills-grid,
+        .contact-grid {
+          gap: 9px;
+        }
+
+        .project-grid {
+          gap: 10px;
+        }
+
+        .project-image {
+          height: 95px;
+        }
+
+        .project-content {
+          padding: 10px;
+        }
+
+        .project-content h3 {
+          font-size: 11px;
+        }
+
+        .project-content p,
+        .timeline-item p {
+          font-size: 8px;
+        }
+
+        .timeline-item {
+          padding-bottom: 13px;
+        }
+
+        .timeline-date {
+          font-size: 8px;
+        }
+
+        .timeline-item h3 {
+          font-size: 10px;
+        }
+
+        .certificate-grid {
+          gap: 8px;
+        }
+
+        .certificate {
+          padding: 10px !important;
+        }
+
+        .certificate-icon {
+          width: 30px;
+          height: 30px;
+          font-size: 15px;
+          margin-bottom: 5px;
+        }
+
+        .certificate h3 {
+          font-size: 9px;
+        }
+
+        .tag {
+          font-size: 7px;
+          padding: 3px 6px;
+        }
+
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+
+        a {
+          text-decoration: none !important;
+        }
+
+        .stats-grid {
+          margin-top: 15px;
+          gap: 8px;
+        }
+
+        .stat-card {
+          padding: 9px;
+        }
+
+        .stat-card h3 {
+          font-size: 16px;
+        }
+
+        .stat-card p {
+          font-size: 8px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <header class="navbar no-print">
+      <div class="container nav-inner">
+        <a href="#home" class="logo">MY<span>CV.</span></a>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#home" data-i18n="home">Home</a>
+          <a href="#about" data-i18n="about">About</a>
+          <a href="#education" data-i18n="education">Education</a>
+          <a href="#skills" data-i18n="skills">Skills</a>
+          <a href="#projects" data-i18n="projects">Projects</a>
+          <a href="#contact" data-i18n="contact">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <button class="icon-btn" id="themeBtn">☾</button>
+          <button class="icon-btn" id="langBtn">EN</button>
+          <button class="icon-btn" id="settingsBtn">⚙</button>
+          <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SETTINGS -->
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="settings" id="settings">
+      <div class="panel-head">
+        <h3>CV Settings</h3>
+        <button class="icon-btn" id="closeBtn">✕</button>
+      </div>
+
+      <div class="setting-group">
+        <h4>Appearance</h4>
+        <select id="themeSelect">
+          <option value="light">Light Mode</option>
+          <option value="dark">Dark Mode</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <h4>Language</h4>
+        <select id="languageSelect">
+          <option value="en">English</option>
+          <option value="id">Indonesia</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <h4>Layout Style</h4>
+        <select id="layoutSelect">
+          <option value="standard">Standard</option>
+          <option value="compact">Compact</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <h4>Manage Sections</h4>
+
+        <div id="sectionOptions">
+          <label class="setting-option"
+            ><input type="checkbox" data-section="about" checked /> About
+            Me</label
+          >
+          <label class="setting-option"
+            ><input type="checkbox" data-section="education" checked />
+            Education</label
+          >
+          <label class="setting-option"
+            ><input type="checkbox" data-section="experience" checked />
+            Experience</label
+          >
+          <label class="setting-option"
+            ><input type="checkbox" data-section="skills" checked />
+            Skills</label
+          >
+          <label class="setting-option"
+            ><input type="checkbox" data-section="projects" checked />
+            Projects</label
+          >
+          <label class="setting-option"
+            ><input type="checkbox" data-section="certificates" checked />
+            Certificates</label
+          >
+          <label class="setting-option"
+            ><input type="checkbox" data-section="contact" checked />
+            Contact</label
+          >
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h4>Content Editing</h4>
+        <p style="font-size: 11px; color: var(--muted); margin-bottom: 12px">
+          Enable editing to change your CV text directly on the page.
+        </p>
+        <button class="btn btn-primary" style="width: 100%" id="editBtn">
+          ✎ Enable Edit Mode
+        </button>
+        <button
+          class="btn btn-light"
+          style="width: 100%; margin-top: 9px"
+          id="saveBtn"
+        >
+          Save Changes
+        </button>
+      </div>
+
+      <div class="setting-group">
+        <h4>Export</h4>
+        <button class="btn btn-gold" style="width: 100%" id="pdfBtn">
+          ↓ Download CV as PDF
+        </button>
+      </div>
+
+      <div class="setting-group">
+        <button class="btn btn-light" style="width: 100%" id="resetBtn">
+          Reset Settings
+        </button>
+      </div>
+    </aside>
+
+    <div class="edit-indicator">
+      ✎ Edit Mode Active — Click any outlined text to edit
+    </div>
+
+    <main>
+      <!-- HERO -->
+
+      <section class="hero" id="home">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="reveal">
+              <div class="availability">
+                <span class="dot"></span>
+                <span data-editable data-i18n="availability"
+                  >Available for Opportunities</span
+                >
+              </div>
+
+              <h1 data-editable>Hello, I'm <span>Rindu Marito.</span></h1>
+
+              <p class="hero-role" data-editable data-i18n="profession">
+                Software Engineering Graduate
+              </p>
+
+              <p class="hero-desc" data-editable data-i18n="heroDesc">
+                Passionate about technology, web development, and creative
+                digital solutions. I enjoy learning new things and turning ideas
+                into meaningful projects.
+              </p>
+
+              <div class="hero-buttons no-print">
+                <a href="#projects" class="btn btn-primary" data-i18n="explore"
+                  >Explore My Work ↗</a
+                >
+                <button class="btn btn-light" id="heroPdf" data-i18n="download">
+                  Download CV ↓
+                </button>
+              </div>
+
+              <div class="socials">
+                <a href="https://github.com/" target="_blank">GitHub ↗</a>
+                <a href="https://linkedin.com/" target="_blank">LinkedIn ↗</a>
+                <a href="https://instagram.com/rindumrto" target="_blank"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+
+            <div class="profile-wrap reveal">
+              <div class="profile-border">
+                <img
+                  id="profileImage"
+                  class="profile-img"
+                  src="foto.jpeg"
+                  alt="Profile Photo"
+                />
+              </div>
+
+              <label
+                class="photo-label no-print"
+                for="photoInput"
+                title="Change Profile Photo"
+                >✎</label
+              >
+              <input
+                class="photo-upload"
+                type="file"
+                id="photoInput"
+                accept="image/*"
+              />
+
+              <div class="profile-note" data-editable>✦ Creative & Curious</div>
+            </div>
+          </div>
+
+          <div class="stats-grid reveal">
+            <div class="stat-card">
+              <h3 data-editable>04+</h3>
+              <p data-editable>Completed Projects</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 data-editable>05+</h3>
+              <p data-editable>Technical Skills</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 data-editable>2027</h3>
+              <p data-editable>Graduation Year</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+
+      <section id="about" data-content="about">
+        <div class="container reveal">
+          <div class="section-heading">
+            <span class="section-label">01 — INTRODUCTION</span>
+            <h2 class="section-title" data-i18n="aboutTitle">About Me</h2>
+            <p class="section-description" data-i18n="aboutSub">
+              Get to know me better.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="card">
+              <h3 data-editable data-i18n="intro">Personal Introduction</h3>
+
+              <p class="about-text" data-editable data-i18n="aboutDesc">
+                I am a Software Engineering graduate with an interest in web
+                development, user interface design, and technology. I enjoy
+                creating functional and visually appealing digital experiences.
+                I am a motivated person who values continuous learning,
+                teamwork, and problem-solving.
+              </p>
+
+              <p class="about-text" data-editable>
+                My goal is to continue developing my technical abilities and
+                contribute to projects that create positive and meaningful
+                impacts.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3 data-i18n="personalInfo">Personal Information</h3>
+
+              <div class="info-list">
+                <div class="info-item">
+                  <span>Full Name</span><span data-editable>Rindu Marito</span>
+                </div>
+                <div class="info-item">
+                  <span>Location</span
+                  ><span data-editable>Jakarta, Indonesia</span>
+                </div>
+                <div class="info-item">
+                  <span>Email</span
+                  ><span data-editable>rindumarito78@gmail.com</span>
+                </div>
+                <div class="info-item">
+                  <span>Nationality</span><span data-editable>Indonesian</span>
+                </div>
+                <div class="info-item">
+                  <span>Interests</span
+                  ><span data-editable>Technology & Design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+
+      <section id="education" data-content="education">
+        <div class="container reveal">
+          <div class="section-heading">
+            <span class="section-label">02 — ACADEMIC JOURNEY</span>
+            <h2 class="section-title" data-i18n="educationTitle">
+              Education Background
+            </h2>
+            <p class="section-description" data-i18n="educationSub">
+              My academic journey.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-date" data-editable>2024 — 2027</span>
+                <h3 data-editable>SMK Negeri 12 Jakarta</h3>
+                <p data-editable>Software Engineering (RPL)</p>
+                <p data-editable>
+                  Focused on programming, database management, web development,
+                  and UI/UX design.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+
+      <section id="experience" data-content="experience">
+        <div class="container reveal">
+          <div class="section-heading">
+            <span class="section-label">03 — PROFESSIONAL JOURNEY</span>
+            <h2 class="section-title" data-i18n="experienceTitle">
+              Work Experience
+            </h2>
+            <p class="section-description">
+              My professional and organizational experience.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-date" data-editable>2026 — PRESENT</span>
+                <h3 data-editable>Patra Jakarta Hotel - Adminstrator F & B<</h3>
+                <p data-editable>
+                  Managed daily inventory tracking of food and beverage supplies
+                  to ensure optimal stock levels and minimize waste.
+                </p>
+                <p data-editable>
+                  As an F&B Admin, I am responsible for managing sales data,
+                  tracking inventory, recording transactions, and preparing
+                  operational reports. This role relates to the field of
+                  Software Engineering (RPL), particularly in the application of
+                  data processing, the use of computer technology, and the
+                  digital management of information.
+                </p>
+              </div>
+
+              <div class="timeline-item">
+                <span class="timeline-date" data-editable
+                  >PREVIOUS EXPERIENCE</span
+                >
+                <h3 data-editable>Organization / Volunteer</h3>
+                <p data-editable>
+                  Add your organizational experience, responsibilities, and
+                  achievements.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+
+      <section id="skills" data-content="skills">
+        <div class="container reveal">
+          <div class="section-heading">
+            <span class="section-label">04 — EXPERTISE</span>
+            <h2 class="section-title" data-i18n="skillsTitle">
+              Skills & Expertise
+            </h2>
+            <p class="section-description">
+              My technical and professional capabilities.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <div class="card">
+              <h3 data-i18n="technical">Technical Skills</h3>
+
+              <div class="skill-list">
+                <div>
+                  <div class="skill-info">
+                    <span data-editable>HTML & CSS</span
+                    ><span data-editable>85%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" style="--value: 85%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="skill-info">
+                    <span data-editable>PHP & MySQL</span
+                    ><span data-editable>75%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" style="--value: 75%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="skill-info">
+                    <span data-editable>JavaScript</span
+                    ><span data-editable>65%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" style="--value: 65%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="skill-info">
+                    <span data-editable>Python</span
+                    ><span data-editable>65%</span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" style="--value: 65%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 data-i18n="professional">Professional Skills</h3>
+
+              <div class="tags">
+                <span class="tag" data-editable>UI/UX Design</span>
+                <span class="tag" data-editable>Figma</span>
+                <span class="tag" data-editable>Problem Solving</span>
+                <span class="tag" data-editable>Communication</span>
+                <span class="tag" data-editable>Teamwork</span>
+                <span class="tag" data-editable>Adaptability</span>
+                <span class="tag" data-editable>Time Management</span>
+                <span class="tag" data-editable>Creative Thinking</span>
+              </div>
+
+              <h3 style="margin-top: 25px">Tools & Technologies</h3>
+
+              <div class="tags">
+                <span class="tag" data-editable>VS Code</span>
+                <span class="tag" data-editable>XAMPP</span>
+                <span class="tag" data-editable>GitHub</span>
+                <span class="tag" data-editable>Figma</span>
+                <span class="tag" data-editable>Bootstrap</span>
+                <span class="tag" data-editable>MySQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+
+      <section id="projects" data-content="projects">
+        <div class="container reveal">
+          <div class="section-heading">
+            <span class="section-label">05 — SELECTED WORK</span>
+            <h2 class="section-title" data-i18n="projectsTitle">
+              Featured Projects
+            </h2>
+            <p class="section-description">
+              Some projects that showcase my abilities.
+            </p>
+          </div>
+
+          <div class="project-grid">
+            <div class="card project-card">
+              <img
+                class="project-image"
+                src="Votera Online Ballot Logo.png"
+                alt="Educational Website"
+              />
+              <div class="project-content">
+                <h3 data-editable>Educational Website</h3>
+                <p data-editable>
+                  An educational website designed to provide accessible learning
+                  materials and an engaging user experience.
+                </p>
+                <div class="tags">
+                  <span class="tag">HTML</span><span class="tag">CSS</span
+                  ><span class="tag">JavaScript</span>
+                </div>
+                <a class="project-link" href="#" data-editable
+                  >View Project ↗</a
+                >
+              </div>
+            </div>
+
+            <div class="card project-card">
+              <img
+                class="project-image"
+                src="WhatsApp Image 2026-11-19 at 10.24.34.jpeg"
+                alt="E-commerce"
+              />
+              <div class="project-content">
+                <h3 data-editable>E-Commerce Prototype</h3>
+                <p data-editable>
+                  A modern e-commerce user interface prototype created to
+                  improve the shopping experience.
+                </p>
+                <div class="tags">
+                  <span class="tag">Figma</span><span class="tag">UI/UX</span
+                  ><span class="tag">Wireframe</span>
+                </div>
+                <a class="project-link" href="#" data-editable
+                  >View Project ↗</a
+                >
+              </div>
+            </div>
+
+            <div class="card project-card">
+              <img class="project-image" src="Game 5R-1.jpg" alt="Python" />
+              <div class="project-content">
+                <h3 data-editable>Number Guessing Game</h3>
+                <p data-editable>
+                  A simple interactive Python game that challenges users to
+                  guess a randomly generated number.
+                </p>
+                <div class="tags">
+                  <span class="tag">Python</span><span class="tag">Logic</span>
+                </div>
+                <a class="project-link" href="#" data-editable
+                  >View Project ↗</a
+                >
+              </div>
+            </div>
+
+            <div class="card project-card">
+              <img class="project-image" src="foto.jpeg" alt="Database" />
+              <div class="project-content">
+                <h3 data-editable>Database Management System</h3>
+                <p data-editable>
+                  A database-based application designed to organize, manage, and
+                  display information efficiently.
+                </p>
+                <div class="tags">
+                  <span class="tag">PHP</span><span class="tag">MySQL</span
+                  ><span class="tag">Bootstrap</span>
+                </div>
+                <a class="project-link" href="#" data-editable
+                  >View Project ↗</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CERTIFICATES -->
+
+      <section id="certificates" data-content="certificates">
+        <div class="container reveal">
+          <div class="section-heading">
+            <span class="section-label">06 — ACHIEVEMENTS</span>
+            <h2 class="section-title" data-i18n="certificateTitle">
+              Certificates & Achievements
+            </h2>
+            <p class="section-description">
+              Learning milestones and accomplishments.
+            </p>
+          </div>
+
+          <div class="certificate-grid">
+            <div class="card certificate">
+              <div class="certificate-icon">✦</div>
+              <h3 data-editable>Web Development</h3>
+              <p data-editable>Certificate Provider · Year</p>
+            </div>
+
+            <div class="card certificate">
+              <div class="certificate-icon">✧</div>
+              <h3 data-editable>UI/UX Design</h3>
+              <p data-editable>Certificate Provider · Year</p>
+            </div>
+
+            <div class="card certificate">
+              <div class="certificate-icon">◇</div>
+              <h3 data-editable>Programming</h3>
+              <p data-editable>Certificate Provider · Year</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+
+      <section id="contact" data-content="contact">
+        <div class="container reveal">
+          <div class="section-heading">
+            <span class="section-label">07 — GET IN TOUCH</span>
+            <h2 class="section-title" data-i18n="contactTitle">
+              Let's Connect
+            </h2>
+            <p class="section-description">
+              Feel free to reach out for opportunities or collaborations.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="card">
+              <h3>Contact Information</h3>
+
+              <div class="contact-info">
+                <div class="contact-item">
+                  <strong>Email</strong
+                  ><span data-editable>rindumarito78@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                  <strong>Location</strong
+                  ><span data-editable>Jakarta, Indonesia</span>
+                </div>
+                <div class="contact-item">
+                  <strong>GitHub</strong
+                  ><span data-editable>github.com/yourusername</span>
+                </div>
+                <div class="contact-item">
+                  <strong>LinkedIn</strong
+                  ><span data-editable>linkedin.com/in/yourusername</span>
+                </div>
+                <div class="contact-item">
+                  <strong>Instagram</strong
+                  ><span data-editable>@rindumrto</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card contact-form no-print">
+              <h3>Send Me a Message</h3>
+
+              <form id="contactForm" style="margin-top: 18px">
+                <div class="form-group">
+                  <label>Your Name</label>
+                  <input
+                    id="senderName"
+                    required
+                    placeholder="Enter your name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input
+                    type="email"
+                    id="senderEmail"
+                    required
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Message</label>
+                  <textarea
+                    id="senderMessage"
+                    required
+                    placeholder="Write your message..."
+                  ></textarea>
+                </div>
+
+                <button
+                  class="btn btn-primary"
+                  type="submit"
+                  style="width: 100%"
+                >
+                  Send Message →
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Rindu Marito. Designed with passion and
+      creativity.
+    </footer>
+
+    <script>
+      /* ELEMENTS */
+
+      const $ = (id) => document.getElementById(id);
+
+      const settings = $("settings");
+      const overlay = $("overlay");
+
+      let editing = false;
+
+      const editableElements = [
+        ...document.querySelectorAll("[data-editable]"),
+      ];
+
+      /* SAVE CONTENT */
+
+      function saveContent() {
+        const content = editableElements.map((el) => el.innerHTML);
+
+        localStorage.setItem("cv-content", JSON.stringify(content));
+
+        alert("Your CV content has been saved successfully!");
+      }
+
+      function loadContent() {
+        const saved = localStorage.getItem("cv-content");
+
+        if (!saved) return;
+
+        try {
+          const content = JSON.parse(saved);
+
+          editableElements.forEach((el, index) => {
+            if (content[index] !== undefined) {
+              el.innerHTML = content[index];
+            }
+          });
+        } catch (e) {
+          console.error("Unable to load saved CV content.");
+        }
+      }
+
+      /* EDIT MODE */
+
+      function setEditMode(status) {
+        editing = status;
+
+        document.body.classList.toggle("edit-mode", status);
+
+        editableElements.forEach((el) => {
+          el.contentEditable = status ? "true" : "false";
+        });
+
+        $("editBtn").textContent = status
+          ? "✓ Finish Editing"
+          : "✎ Enable Edit Mode";
+
+        if (!status) {
+          saveContent();
+        }
+      }
+
+      $("editBtn").addEventListener("click", () => {
+        setEditMode(!editing);
+      });
+
+      $("saveBtn").addEventListener("click", () => {
+        saveContent();
+      });
+
+      /* PROFILE IMAGE UPLOAD */
+
+      $("photoInput").addEventListener("change", function (e) {
+        const file = e.target.files[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+          alert("Please select a valid image.");
+          return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+          alert("Image size must not exceed 5 MB.");
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          const image = event.target.result;
+
+          $("profileImage").src = image;
+
+          localStorage.setItem("cv-profile-image", image);
+        };
+
+        reader.readAsDataURL(file);
+      });
+
+      const savedImage = localStorage.getItem("cv-profile-image");
+
+      if (savedImage) {
+        $("profileImage").src = savedImage;
+      }
+
+      /* THEME */
+
+      function setTheme(theme) {
+        document.body.classList.toggle("dark", theme === "dark");
+
+        $("themeSelect").value = theme;
+
+        $("themeBtn").textContent = theme === "dark" ? "☀" : "☾";
+
+        localStorage.setItem("cv-theme", theme);
+      }
+
+      $("themeBtn").addEventListener("click", () => {
+        const dark = document.body.classList.contains("dark");
+
+        setTheme(dark ? "light" : "dark");
+      });
+
+      $("themeSelect").addEventListener("change", (e) => {
+        setTheme(e.target.value);
+      });
+
+      /* LANGUAGE */
+
+      const translations = {
+        en: {
+          home: "Home",
+          about: "About",
+          education: "Education",
+          skills: "Skills",
+          projects: "Projects",
+          contact: "Contact",
+          availability: "Available for Opportunities",
+          profession: "Software Engineering Graduate",
+          heroDesc:
+            "Passionate about technology, web development, and creative digital solutions. I enjoy learning new things and turning ideas into meaningful projects.",
+          explore: "Explore My Work ↗",
+          download: "Download CV ↓",
+          aboutTitle: "About Me",
+          aboutSub: "Get to know me better.",
+          intro: "Personal Introduction",
+          aboutDesc:
+            "I am a Software Engineering graduate with an interest in web development, user interface design, and technology. I enjoy creating functional and visually appealing digital experiences. I am a motivated person who values continuous learning, teamwork, and problem-solving.",
+          personalInfo: "Personal Information",
+          educationTitle: "Education Background",
+          educationSub: "My academic journey.",
+          experienceTitle: "Work Experience",
+          skillsTitle: "Skills & Expertise",
+          technical: "Technical Skills",
+          professional: "Professional Skills",
+          projectsTitle: "Featured Projects",
+          certificateTitle: "Certificates & Achievements",
+          contactTitle: "Let's Connect",
+        },
+
+        id: {
+          home: "Beranda",
+          about: "Tentang",
+          education: "Pendidikan",
+          skills: "Keahlian",
+          projects: "Proyek",
+          contact: "Kontak",
+          availability: "Terbuka untuk Kesempatan",
+          profession: "Lulusan Rekayasa Perangkat Lunak",
+          heroDesc:
+            "Memiliki ketertarikan pada teknologi, pengembangan web, dan solusi digital kreatif. Saya senang mempelajari hal baru dan mengubah ide menjadi proyek yang bermanfaat.",
+          explore: "Lihat Proyek Saya ↗",
+          download: "Unduh CV ↓",
+          aboutTitle: "Tentang Saya",
+          aboutSub: "Kenali saya lebih dekat.",
+          intro: "Perkenalan Diri",
+          aboutDesc:
+            "Saya merupakan lulusan Rekayasa Perangkat Lunak yang memiliki ketertarikan pada pengembangan web, desain antarmuka, dan teknologi. Saya senang membuat pengalaman digital yang fungsional dan menarik secara visual. Saya adalah pribadi yang termotivasi, menghargai pembelajaran berkelanjutan, kerja sama tim, dan pemecahan masalah.",
+          personalInfo: "Informasi Pribadi",
+          educationTitle: "Riwayat Pendidikan",
+          educationSub: "Perjalanan akademik saya.",
+          experienceTitle: "Pengalaman Kerja",
+          skillsTitle: "Keahlian & Kompetensi",
+          technical: "Keahlian Teknis",
+          professional: "Keahlian Profesional",
+          projectsTitle: "Proyek Pilihan",
+          certificateTitle: "Sertifikat & Pencapaian",
+          contactTitle: "Mari Terhubung",
+        },
+      };
+
+      function setLanguage(lang) {
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.dataset.i18n;
+
+          if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+
+        $("languageSelect").value = lang;
+        $("langBtn").textContent = lang.toUpperCase();
+
+        localStorage.setItem("cv-language", lang);
+      }
+
+      $("langBtn").addEventListener("click", () => {
+        setLanguage($("languageSelect").value === "en" ? "id" : "en");
+      });
+
+      $("languageSelect").addEventListener("change", (e) => {
+        setLanguage(e.target.value);
+      });
+
+      /* LAYOUT */
+
+      function setLayout(layout) {
+        document.body.classList.toggle("compact", layout === "compact");
+
+        $("layoutSelect").value = layout;
+
+        localStorage.setItem("cv-layout", layout);
+      }
+
+      $("layoutSelect").addEventListener("change", (e) => {
+        setLayout(e.target.value);
+      });
+
+      /* CUSTOM CONTENT */
+
+      document.querySelectorAll("[data-section]").forEach((input) => {
+        const key = "cv-section-" + input.dataset.section;
+
+        const saved = localStorage.getItem(key);
+
+        if (saved !== null) {
+          input.checked = saved === "true";
+        }
+
+        const target = document.querySelector(
+          '[data-content="' + input.dataset.section + '"]',
+        );
+
+        if (target) {
+          target.hidden = !input.checked;
+        }
+
+        input.addEventListener("change", () => {
+          if (target) {
+            target.hidden = !input.checked;
+          }
+
+          localStorage.setItem(key, input.checked);
+        });
+      });
+
+      /* PANEL */
+
+      function openPanel() {
+        settings.classList.add("open");
+        overlay.classList.add("show");
+      }
+
+      function closePanel() {
+        settings.classList.remove("open");
+        overlay.classList.remove("show");
+      }
+
+      $("settingsBtn").addEventListener("click", openPanel);
+      $("closeBtn").addEventListener("click", closePanel);
+      overlay.addEventListener("click", closePanel);
+
+      /* MOBILE MENU */
+
+      $("menuBtn").addEventListener("click", () => {
+        $("navLinks").classList.toggle("show");
+      });
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          $("navLinks").classList.remove("show");
+        });
+      });
+
+      /* PDF */
+
+      function exportPDF() {
+        if (editing) {
+          setEditMode(false);
+        }
+
+        closePanel();
+
+        window.print();
+      }
+
+      $("pdfBtn").addEventListener("click", exportPDF);
+      $("heroPdf").addEventListener("click", exportPDF);
+
+      /* CONTACT */
+
+      $("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = $("senderName").value.trim();
+        const email = $("senderEmail").value.trim();
+        const message = $("senderMessage").value.trim();
+
+        const subject = encodeURIComponent("Digital CV Contact - " + name);
+
+        const body = encodeURIComponent(
+          "Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message,
+        );
+
+        window.location.href =
+          "mailto:rindumarito78@gmail.com?subject=" + subject + "&body=" + body;
+      });
+
+      /* RESET */
+
+      $("resetBtn").addEventListener("click", () => {
+        if (!confirm("Reset all appearance and section settings?")) return;
+
+        ["cv-theme", "cv-language", "cv-layout"].forEach((key) =>
+          localStorage.removeItem(key),
+        );
+
+        document.querySelectorAll("[data-section]").forEach((input) => {
+          input.checked = true;
+
+          const target = document.querySelector(
+            '[data-content="' + input.dataset.section + '"]',
+          );
+
+          if (target) target.hidden = false;
+
+          localStorage.removeItem("cv-section-" + input.dataset.section);
+        });
+
+        setTheme("light");
+        setLanguage("en");
+        setLayout("standard");
+      });
+
+      /* SCROLL ANIMATION */
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => {
+        observer.observe(el);
+      });
+
+      /* INITIALIZE */
+
+      $("year").textContent = new Date().getFullYear();
+
+      loadContent();
+
+      setTheme(localStorage.getItem("cv-theme") || "light");
+
+      setLanguage(localStorage.getItem("cv-language") || "en");
+
+      setLayout(localStorage.getItem("cv-layout") || "standard");
+    </script>
+  </body>
+</html>
